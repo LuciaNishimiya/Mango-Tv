@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="./assets/styles/style.css">
+  <script src='/socket.io/socket.io.js'></script>
+  <link rel="icon" href="./assets/imgs/logo.png">
+
+  <title>Netzi TV</title>
+</head>
+
+<body>
+  <header class="headerE">
+    <div class="logo-header"><img src="./assets/imgs/logo.png" alt="" class="Imglogo">
+      <p>Netzi TV</p>
+    </div>
+  </header>
+  <div id="container">
+      <canvas id="play" style="display: none;"></canvas>
+      <video id="video" autoplay playsinline controls></video>
+    </div> 
+    <div id="errorMsg"></div>
+  </div>
+
+  <script src="./assets/scripts/script.js"></script>
+</body>
+
+</html>
