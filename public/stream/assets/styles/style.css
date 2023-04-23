@@ -2,11 +2,10 @@ body{
   background: #1f3474;
   color: white;
   margin: 0;
-  padding: 0;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 1em;
-  line-height: 1.5em;
-  height: 80px;
+	padding: 0;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	line-height: 1.5em;
 }
 button {
   background-color: #dc1e1e;
@@ -18,7 +17,11 @@ button {
   margin: 0 0 1em 0;
   padding: 0.5em 0.7em 0.6em 0.7em;
 }
-
+a {
+  color: #1D6EEE;
+  font-weight: 300;
+  text-decoration: none;
+}
 div#container {
   margin: 0 auto 0 auto;
   max-width: 60em;
@@ -32,7 +35,7 @@ select {
 }
 
 video {
-  background-image: url('https://cdn.discordapp.com/attachments/925498428740485180/1096946197236809778/2023-04-15_115058_PM_0000.gif');
+  background-image: url('https://lucianishimiya.cf/netzi/stream/assets/imgs/offline.gif');
   background-size: cover;
   margin: 0 0 20px 0;
   --width: 74%;
@@ -41,14 +44,14 @@ video {
 }
 .headerE {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.656);
-  background: #121f3d;
-  color: white;
-  height: 52px;
+	background: #121f3d;
+	color: white;
+	height: 52px;
 }	
 .logo-header {
-  float: left;
-  padding: 1px 0 0 20px;
-  text-decoration: none;
+	float: left;
+	padding: 1px 0 0 20px;
+	text-decoration: none;
   display: flex;
   padding-left: 12px;
 }

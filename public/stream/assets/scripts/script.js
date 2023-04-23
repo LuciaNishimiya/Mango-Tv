@@ -1,8 +1,8 @@
 const startButton = document.getElementById('startButton');
 const canvas = document.getElementById('preview');
 
-const calidadwidth = [1280, 1920]
-const calidadheight = [720, 1080]
+const calidadwidth = [1280, 1920];
+const calidadheight = [720, 1080];
 const qualitySelector = document.getElementById('qualitySelector');
 const selectedQuality = qualitySelector.value;
 
@@ -10,8 +10,8 @@ const selectedQuality = qualitySelector.value;
 var context = canvas.getContext('2d');
 var btn = document.querySelector('#btn');
 
-canvas.width = parseInt(calidadwidth[1]);
-canvas.height = parseInt(calidadheight[1]);
+canvas.width = parseInt(calidadwidth[0]);//qualitySelector]);
+canvas.height = parseInt(calidadheight[0]);//qualitySelector]);
 
 context.width = canvas.width;
 context.height = canvas.height;
@@ -44,12 +44,12 @@ function errorMsg(msg, error) {
 }
 
 startButton.addEventListener('click', () => {
-  const options = {audio: true, video: true};
+  const options = { audio: true, video: true };
   navigator.mediaDevices.getDisplayMedia(options)
-      .then(CargarStrean, ManejarErrores);
-      var intervalo = setInterval(() => {
-        verVideo(video, context);
-    }, 1)
+    .then(CargarStrean, ManejarErrores);
+  var intervalo = setInterval(() => {
+    verVideo(video, context);
+  }, 1)
 });
 
 function verVideo(video, context) {

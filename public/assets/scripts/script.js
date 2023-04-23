@@ -5,8 +5,8 @@ let context = canvas.getContext('2d');
 const calidadwidth = [1280, 1920]
 const calidadheight = [720, 1080]
 
-canvas.width = parseInt(calidadwidth[1]);
-canvas.height = parseInt(calidadheight[1]);
+canvas.width = parseInt(calidadwidth[0]);
+canvas.height = parseInt(calidadheight[0]);
 
 context.width = canvas.width;
 context.height = canvas.height;
