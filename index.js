@@ -4,6 +4,9 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http); 
 
 
+const port = 3000;
+
+
 app.use(express.static(__dirname + "/public"));
 
 
@@ -12,7 +15,7 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('stream', video); 
     })
 })
-http.listen(3323, () => {
-    console.log('Servidor en puerto 3000');
+http.listen(port, () => {
+    console.log('Servidor funcionado en el puerto ${port}');
 })
 
