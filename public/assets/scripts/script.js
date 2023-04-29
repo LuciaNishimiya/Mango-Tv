@@ -1,26 +1,55 @@
-const socket = io();
-const canvas = document.getElementById('play');
-const video = document.querySelector('video');
-let context = canvas.getContext('2d');
-const calidadwidth = [1280, 1920]
-const calidadheight = [720, 1080]
+let peerConnection;
+const config = {
+  iceServers: [
+      { 
+        "urls": "stun:stun.l.google.com:19302",
+      },
+      // { 
+      //   "urls": "turn:TURN_IP?transport=tcp",
+      //   "username": "TURN_USERNAME",
+      //   "credential": "TURN_CREDENTIALS"
+      // }
+  ]
+};
 
-canvas.width = parseInt(calidadwidth[0]);
-canvas.height = parseInt(calidadheight[0]);
+const socket = io.connect(window.location.origin);
+const video = document.querySelector("video");
 
-context.width = canvas.width;
-context.height = canvas.height;
-
-
-
-// Escuchar el evento 'stream' y dibujar la imagen en el canvas
-socket.on('stream', (image) => {
-  let img = new Image();
-  img.src = image;
-  img.onload = function() {
-    context.drawImage(img, 0, 0, canvas.width, canvas.height);
+socket.on("offer", (id, description) => {
+  peerConnection = new RTCPeerConnection(config);
+  peerConnection
+    .setRemoteDescription(description)
+    .then(() => peerConnection.createAnswer())
+    .then(sdp => peerConnection.setLocalDescription(sdp))
+    .then(() => {
+      socket.emit("answer", id, peerConnection.localDescription);
+    });
+  peerConnection.ontrack = event => {
+    video.srcObject = event.streams[0];
+  };
+  peerConnection.onicecandidate = event => {
+    if (event.candidate) {
+      socket.emit("candidate", id, event.candidate);
+    }
   };
 });
-//Convertir canvas a video
-const stream = canvas.captureStream();
-video.srcObject = stream;
+
+
+socket.on("candidate", (id, candidate) => {
+  peerConnection
+    .addIceCandidate(new RTCIceCandidate(candidate))
+    .catch(e => console.error(e));
+});
+
+socket.on("connect", () => {
+  socket.emit("watcher");
+});
+
+socket.on("broadcaster", () => {
+  socket.emit("watcher");
+});
+
+window.onunload = window.onbeforeunload = () => {
+  socket.close();
+  peerConnection.close();
+};
